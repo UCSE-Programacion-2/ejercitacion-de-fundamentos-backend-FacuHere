@@ -34,7 +34,6 @@ const dataFilePath = path.join(__dirname, 'data', 'frutas.json');
 app.get('/frutas', (req, res) => {
   const data = fs.readFileSync(dataFilePath, 'utf-8');
   const frutas = JSON.parse(data);
-
   res.status(200).json(frutas);
 });
 
@@ -51,11 +50,9 @@ app.get('/frutas/buscar', (req, res) => {
 
   const data = fs.readFileSync(dataFilePath, 'utf-8');
   const frutas = JSON.parse(data);
-
   const frutasFiltradas = frutas.filter((fruta) =>
     fruta.nombre.toLowerCase().includes(nombre.toLowerCase())
   );
-
   res.status(200).json(frutasFiltradas);
 });
 
