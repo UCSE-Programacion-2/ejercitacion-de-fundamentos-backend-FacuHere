@@ -70,11 +70,8 @@ app.get('/frutas/:id', (req, res) => {
   const data = fs.readFileSync(dataFilePath, 'utf-8');
   const frutas = JSON.parse(data);
   const frutaEncontrada = frutas.find((fruta) => fruta.id === id);
-
   if (!frutaEncontrada) {
-    return res.status(404).json({ error: "Fruta no encontrada" });
-  }
-
+    return res.status(404).json({ error: "Fruta no encontrada" }); }
   res.status(200).json(frutaEncontrada);
 });
 
@@ -96,13 +93,10 @@ app.post('/frutas', (req, res) => {
     imagen: req.body.imagen,
     nombre: req.body.nombre,
     importe: req.body.importe,
-    stock: req.body.stock
-  };
+    stock: req.body.stock};
 
   frutas.push(nuevaFruta);
-
   fs.writeFileSync(dataFilePath, JSON.stringify(frutas, null, 2));
-
   res.status(201).json(nuevaFruta);
 });
 
