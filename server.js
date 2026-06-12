@@ -70,10 +70,8 @@ app.get('/frutas/buscar', (req, res) => {
  */
 app.get('/frutas/:id', (req, res) => {
   const id = Number(req.params.id);
-
   const data = fs.readFileSync(dataFilePath, 'utf-8');
   const frutas = JSON.parse(data);
-
   const frutaEncontrada = frutas.find((fruta) => fruta.id === id);
 
   if (!frutaEncontrada) {
@@ -95,9 +93,7 @@ app.get('/frutas/:id', (req, res) => {
 app.post('/frutas', (req, res) => {
   const data = fs.readFileSync(dataFilePath, 'utf-8');
   const frutas = JSON.parse(data);
-
   const ultimoId = frutas.length > 0 ? Math.max(...frutas.map((fruta) => fruta.id)) : 0;
-
   const nuevaFruta = {
     id: ultimoId + 1,
     imagen: req.body.imagen,
